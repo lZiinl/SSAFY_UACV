@@ -45,3 +45,12 @@ jwt:
     header: Authorization
   refresh:
     header: Authorization-refresh
+
+ffmpeg:
+  path: C:\Users\SSAFY\scoop\apps\ffmpeg\current\bin\ffmpeg.exe
+
+streaming:
+  output-path: /tmp/streams
+  hls:
+    segment-duration: 2
+    playlist-size: 3

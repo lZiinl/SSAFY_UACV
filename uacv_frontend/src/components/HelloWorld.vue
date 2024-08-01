@@ -14,6 +14,8 @@
         <router-link :to="{path: '/login'}">로그인</router-link>
         <span> | </span>
         <router-link :to="{path: '/signup'}">관리자 등록</router-link>
+        <span> | </span>
+        <router-link :to="{path: '/streaming'}">실시간 영상 스트리밍</router-link>
       </div>
       <div class="py-4" />
 
