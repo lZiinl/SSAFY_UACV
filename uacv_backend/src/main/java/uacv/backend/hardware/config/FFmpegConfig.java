@@ -15,4 +15,5 @@ public class FFmpegConfig {
 
     public void setPath(String path) {
         this.path = path;
+    }
 }
