@@ -45,7 +45,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/user/signup", "/user/login").permitAll()
+                        .requestMatchers("/user/signup", "/user/login", "/api/**").permitAll()
                         .requestMatchers("/user/admin").hasRole("ADMIN")
                         .requestMatchers("/user/control").hasRole("CONTROL")
                         .requestMatchers("/user/monitor").hasRole("MONITOR")

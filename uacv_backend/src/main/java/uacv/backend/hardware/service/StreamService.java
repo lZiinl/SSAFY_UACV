@@ -1,15 +1,13 @@
 package uacv.backend.hardware.service;
 
+import org.springframework.stereotype.Service;
+import uacv.backend.stream.StreamInfo;
 
-import org.springframework.core.io.Resource;
+@Service
+public class StreamService {
+    private final String STREAM_URL = "rtsp://<address>:8554/live";
 
-import uacv.backend.hardware.domain.StreamInfo;
-
-import java.io.IOException;
-
-public interface StreamService {
-    void startStream(StreamInfo streamInfo) throws IOException;
-    void stopStreams();
-    Resource getPlaylist(String cameraId);
-    Resource getSegment(String cameraId, String segment);
+    public StreamInfo getStreamInfo(String streamName) {
+        return new StreamInfo(STREAM_URL, streamName);
+    }
 }
