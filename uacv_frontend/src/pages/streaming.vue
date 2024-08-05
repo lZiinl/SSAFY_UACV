@@ -1,95 +1,28 @@
-<!-- src/pages/streaming.vue -->
 <template>
-    <v-container fluid>
-      <v-row>
-        <v-col cols="12" md="6">
-          <v-card>
-            <v-card-title>Camera 1</v-card-title>
-            <v-card-text>
-              <VideoPlayer :options="playerOptions1" />
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-card>
-            <v-card-title>Camera 2</v-card-title>
-            <v-card-text>
-              <VideoPlayer :options="playerOptions2" />
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-      <v-row class="mt-4">
-        <v-col cols="12" sm="6" md="3">
-          <v-btn block color="primary" @click="startStreams">Start Streams</v-btn>
-        </v-col>
-        <v-col cols="12" sm="6" md="3">
-          <v-btn block color="error" @click="stopStreams">Stop Streams</v-btn>
-        </v-col>
-      </v-row>
-      <v-snackbar v-model="snackbar" :color="snackbarColor" top>
-        {{ snackbarText }}
-      </v-snackbar>
-    </v-container>
-  </template>
-  
-  <script>
-  import VideoPlayer from '@/components/VideoPlayer.vue'
-  import axios from 'axios'
-  
-  export default {
-    name: 'Streaming',
-    components: {
-      VideoPlayer
-    },
-    data() {
-      return {
-        playerOptions1: {
-          autoplay: true,
-          controls: true,
-          sources: [{ 
-            src: '/api/streams/camera1/playlist.m3u8', 
-            type: 'application/x-mpegURL' 
-          }]
-        },
-        playerOptions2: {
-          autoplay: true,
-          controls: true,
-          sources: [{ 
-            src: '/api/streams/camera2/playlist.m3u8', 
-            type: 'application/x-mpegURL' 
-          }]
-        },
-        snackbar: false,
-        snackbarText: '',
-        snackbarColor: 'info'
-      }
-    },
-    methods: {
-      async startStreams() {
-        try {
-          await axios.post('/api/streams/start', {
-            camera1: 'rtsp://192.168.100.251:5000/cam1',
-            camera2: 'rtsp://192.168.100.251:5001/cam2'
-          })
-          this.showSnackbar('Streams started successfully', 'success')
-        } catch (error) {
-          this.showSnackbar('Failed to start streams', 'error')
-        }
-      },
-      async stopStreams() {
-        try {
-          await axios.post('/api/streams/stop')
-          this.showSnackbar('Streams stopped successfully', 'success')
-        } catch (error) {
-          this.showSnackbar('Failed to stop streams', 'error')
-        }
-      },
-      showSnackbar(text, color) {
-        this.snackbarText = text
-        this.snackbarColor = color
-        this.snackbar = true
-      }
-    }
+  <v-container>
+    <h1>Live Stream</h1>
+    <stream-player :stream-url="streamUrl" />
+    <!-- 추가: 스트림 시작 버튼 -->
+    <v-btn @click="startStream">Start Stream</v-btn>
+  </v-container>
+</template>
+
+<script>
+import StreamPlayer from '@/components/StreamPlayer.vue'
+import { mapState, mapActions } from 'vue'
+
+export default {
+  name: 'StreamView',
+  components: {
+    StreamPlayer
+  },
+  computed: {
+    ...mapState('stream', ['streamUrl'])
+  },
+  methods: {
+    // 추가: startStream 액션 매핑
+    ...mapActions('stream', ['startStream'])
   }
-  </script>
+  // 제거: created 훅에서 자동으로 스트림을 시작하는 부분 제거
+}
+</script>
