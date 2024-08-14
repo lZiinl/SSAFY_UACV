@@ -3,7 +3,7 @@
   <div>
     <ul>
       <li v-for="log in displayedLogs" :key="log.id">
-        {{ log.time }} - {{ log.message }}
+        {{ formatToKST(log.time) }} - {{ log.message }}
       </li>
     </ul>
   </div>
@@ -44,6 +44,10 @@ export default {
       }
     };
 
+    const formatToKST = (date) => {
+      return date.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+    };
+
     onMounted(() => {
       fetchInitialLogs();
       socket.value = new WebSocket(`${import.meta.env.VITE_WEBSOCKET_URL}/sound`);
@@ -51,7 +55,7 @@ export default {
         const newLog = JSON.parse(event.data);
         addLog({
           id: newLog.id,
-          time: new Date(newLog.receivedAt).toLocaleString('ko-KR'),
+          time: new Date(newLog.receivedAt), // .toLocaleString('ko-KR'),
           message: `총 소리 인식 (${newLog.soundType}로 추정)`,
         });
       };
@@ -59,6 +63,7 @@ export default {
 
     return {
       displayedLogs,
+      formatToKST,
     };
   },
 };
