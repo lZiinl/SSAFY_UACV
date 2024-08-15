@@ -75,9 +75,12 @@ export default {
   methods: {
     async fetchSoundLogs() {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/sound-logs`);
+        const headers = {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`
+        }
+
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_API_URL}/sound-logs`, { headers });
         const data = await response.json();
-        console.log('DB 전체:', data);
 
         this.items = data.map(log => ({
           time: new Date(log.receivedAt).toLocaleString('ko-KR'),
