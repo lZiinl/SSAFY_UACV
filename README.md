@@ -54,7 +54,7 @@ MFCC 기반 모델로 총기 소리를 판단
 #### 기술4 - 원격 모니터링 및 제어
 대시보드 에서 모니터링 및 컨트롤 페이지에서 제어
 
-![대시보드.PNG](./대시보드.PNG) ![image.png](./image.png)
+![대시보드.PNG](./assets/대시보드.PNG)
 
 로그, 원격주행, 정보수정 세부 페이지 제작
 
@@ -75,4 +75,5 @@ MFCC 기반 모델로 총기 소리를 판단
 ![image-1.png](./assets/image-1.png)
 
 ## 프로젝트 고찰
-![image.png](./image.png)
+
+![프로젝트고찰.PNG](./assets/프로젝트고찰.PNG)
