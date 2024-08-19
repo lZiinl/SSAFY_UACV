@@ -1,4 +1,18 @@
 services:
+    caddy:
+        container_name: caddy-proxy
+        image: lucaslorentz/caddy-docker-proxy:2.9.1-alpine
+        ports:
+            - 80:80
+            - 443:443
+        environment:
+            - CADDY_INGRESS_NETWORKS=caddy
+        networks:
+            - caddy
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - caddy_data:/data
+        restart: unless-stopped
     mysql:
         container_name: mysql
         expose:
@@ -52,9 +66,9 @@ services:
 volumes:
     rabbitmq_data:
         name: rabbitmq_data
-        external: false
+    caddy_data:
+        name: caddy_data
 
 networks:
     caddy:
-        external: true
         name: caddy
