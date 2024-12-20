@@ -8,7 +8,8 @@ MPU9250 기반의 방향, 가속도, 각속도 측정<br>
 가속도 및 각속도는 시리얼 통신을 통해 젯슨 오린으로 전송<br>
 
 ## Raspberry Pi 5 HW결선
-![라즈베리파이_HW결선.png](./assets/라즈베리파이_HW결선.png)
+
+![라즈베리파이_HW결선](https://github.com/user-attachments/assets/5afccc94-d9f8-4188-aa0c-189d63c2532b)
 
 ## 사용 라이브러리
 from gpiozero import OutputDevice <br>
