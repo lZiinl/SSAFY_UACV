@@ -7,11 +7,8 @@ MPU9250 기반의 방향, 가속도, 각속도 측정<br>
 모니터링 및 제어 신호를 MQTT를 통해 서버와 통신<br>
 가속도 및 각속도는 시리얼 통신을 통해 젯슨 오린으로 전송<br>
 
-### 라즈베이파이 HW 결선
-![image](https://github.com/user-attachments/assets/2cb0ddaa-134d-4aa3-90ee-aa5e7539e2ea)
-
-### 라즈베이파이 Schematic
-![image](https://github.com/user-attachments/assets/4442d5ac-9aea-45b9-952f-67754a35f31a)
+## Raspberry Pi 5 HW결선
+![라즈베리파이_HW결선.png](./assets/라즈베리파이_HW결선.png)
 
 ## 사용 라이브러리
 from gpiozero import OutputDevice <br>
